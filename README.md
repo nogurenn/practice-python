@@ -1,6 +1,6 @@
 # practice-python
 
-Programs I write for practice
+Programs I write for practice. Visit the golang repo [here](https://github.com/nogurenn/practice-go)
 
 ## Top-level commands
 
@@ -10,5 +10,5 @@ make setup
 
 
 # project you want to run
-make runSimpleEventWorker
+make venvSimpleEventWorker runSimpleEventWorker
 ```
