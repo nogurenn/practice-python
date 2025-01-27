@@ -1,0 +1,4 @@
+{
+    // Used to appease Pylance when putting venvs in weird places
+    "python.defaultInterpreterPath": "python3",
+}

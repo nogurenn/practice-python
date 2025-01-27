@@ -1,0 +1,38 @@
+name: Test python projects 
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'simple-event-worker/**'
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        subproject: ['simple-event-worker']  # List of subprojects to test; extend as needed
+
+    steps:
+    # Step 1: Checkout the repository
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    # Step 2: Set up Python environment
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.12'
+
+    - name: Install dependencies
+      working-directory: ${{ matrix.subproject }}
+      run: |
+        python -m pip install --upgrade pip
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+    - name: Run tests
+      working-directory: ${{ matrix.subproject }}
+      run: |
+        python -m unittest discover -s . -p "*_test.py"
